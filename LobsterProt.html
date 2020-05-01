@@ -36,7 +36,7 @@
       <input onclick="deleteMarkers();" type=button value="Delete Markers">
     </div>
     <div id="map"></div>
-    <p>Click on the map to add markers.</p>
+
     <script>
 
 
@@ -49,7 +49,6 @@
       var markers = [];
 
 
-
       function initMap() {
 
         map = new google.maps.Map(document.getElementById('map'), {
@@ -57,11 +56,8 @@
           zoom: 17
         });
 
-
-        var contentString = "test";
-
         var infoWindow = new google.maps.InfoWindow({ 
-        content: contentString
+        content: "NONE"
         });
 
         // Try HTML5 geolocation.
@@ -74,7 +70,7 @@
 
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
-            //infoWindow.open(map);
+            
             map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -90,8 +86,6 @@
           addMarker(event.latLng);
         });
 
-        //infoWindow.open(map, marker);
-
       }
       
       // Adds a marker to the map and push to the array.
@@ -100,7 +94,7 @@
 
           position: location,
           map: map,
-          label: { color: '#00aaff', fontWeight: 'bold', fontSize: '14px', text: 'Your text here' }
+          label: { color: '#00aaff', fontWeight: 'bold', fontSize: '20px', text: window.prompt('What do you want here?') }
 
         });
 
