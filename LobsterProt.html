@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Removing Markers</title>
+    <title>Lobster</title>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -43,15 +43,26 @@
       // In the following example, markers appear when the user clicks on the map.
       // The markers are stored in an array.
       // The user can then click an option to hide, show or delete the markers.
+
+
       var map;
       var markers = [];
+
+
+
       function initMap() {
+
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
           zoom: 17
         });
 
-        infoWindow = new google.maps.InfoWindow;
+
+        var contentString = "test";
+
+        var infoWindow = new google.maps.InfoWindow({ 
+        content: contentString
+        });
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -74,20 +85,25 @@
           handleLocationError(false, infoWindow, map.getCenter());
         }
 
-
         //allows user to add markers
         map.addListener('click', function(event) {
           addMarker(event.latLng);
         });
+
+        //infoWindow.open(map, marker);
 
       }
       
       // Adds a marker to the map and push to the array.
       function addMarker(location) {
         var marker = new google.maps.Marker({
+
           position: location,
-          map: map
+          map: map,
+          label: { color: '#00aaff', fontWeight: 'bold', fontSize: '14px', text: 'Your text here' }
+
         });
+
         markers.push(marker);
       }
 
